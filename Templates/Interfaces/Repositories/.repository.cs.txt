@@ -1,0 +1,8 @@
+﻿using {domainRootNs}.Entities.{moduleName};
+
+namespace {namespace}
+{
+    public interface I{itemName}Repository : IGenericRepositoryAsync<{itemName}>
+    {
+    }
+}

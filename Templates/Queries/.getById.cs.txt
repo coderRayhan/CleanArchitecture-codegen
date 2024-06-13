@@ -1,0 +1,28 @@
+using AspNetCoreHero.Results;
+using AutoMapper;
+using MediatR;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using {applicationRootNs}.Interfaces.Repositories.{moduleName};
+
+namespace {namespace}
+{
+    public record Get{itemName}IdQuery(int Id) : IRequest<Result<{itemName}Response>> { }
+    public record Get{itemName}IdQueryHandler(I{itemName}Repository Repository, IMapper mapper) : IRequestHandler<Get{itemName}IdQuery, Result<{itemName}Response>>
+    {
+        public async Task<Result<{itemName}Response>> Handle(Get{itemName}IdQuery request, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var data = await Repository.GetByIdAsync(request.Id);
+                var mapdata = mapper.Map<{itemName}Response>(data);
+                return Result<{itemName}Response>.Success(mapdata);
+            }
+            catch (Exception ex)
+            {
+                return Result<{itemName}Response>.Fail(ex.Message);
+            }
+        }
+    }
+}

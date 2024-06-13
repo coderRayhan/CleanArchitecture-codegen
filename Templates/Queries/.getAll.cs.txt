@@ -1,0 +1,31 @@
+using AspNetCoreHero.Results;
+using AutoMapper;
+using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using {applicationRootNs}.Interfaces.Repositories.{moduleName};
+
+namespace {namespace}
+{
+    public record GetAll{itemName}Query : IRequest<Result<List<{itemName}Response>>>
+    {
+        public record GetAll{itemName}QueryHandler(I{itemName}Repository Repository, IMapper Mapper) : IRequestHandler<GetAll{itemName}Query, Result<List<{itemName}Response>>>
+        {
+            public async Task<Result<List<{itemName}Response>>> Handle(GetAll{itemName}Query request, CancellationToken cancellationToken)
+            {
+                try
+                {
+                    var data = await Repository.GetAllAsync();
+                    var mapData = Mapper.Map<List<{itemName}Response>>(data);
+                    return Result<List<{itemName}Response>>.Success(mapData);
+                }
+                catch (Exception ex)
+                {
+                    return Result<List<{itemName}Response>>.Fail(ex.Message);
+                }
+            }
+        }
+    }
+}

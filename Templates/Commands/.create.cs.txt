@@ -1,0 +1,35 @@
+using AspNetCoreHero.Results;
+using AutoMapper;
+using MediatR;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using {applicationRootNs}.Interfaces.Repositories;
+using {applicationRootNs}.Interfaces.Repositories.{moduleName};
+using {domainRootNs}.Entities.{moduleName};
+using {domainRootNs}.Enums;
+
+namespace {namespace}
+{
+    public record Create{itemName}Command : IRequest<Result<int>>
+    {
+        {dtoFieldDefinition}
+    }
+    public record Create{itemName}CommandHandler(I{itemName}Repository repository, IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<Create{itemName}Command, Result<int>>
+    {
+        public async Task<Result<int>> Handle(Create{itemName}Command request, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var entity = mapper.Map<{itemName}>(request);
+                await repository.AddAsync(entity);
+                await unitOfWork.Commit(cancellationToken);
+                return Result<int>.Success(entity.Id);
+            }
+            catch (Exception ex)
+            {
+                return Result<int>.Fail(ex.Message);
+            }
+        }
+    }
+}

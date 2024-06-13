@@ -1,0 +1,74 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using {applicationRootNs}.Interfaces.Repositories.{moduleName};
+using {applicationRootNs}.Interfaces.Repositories;
+using {applicationRootNs}.Interfaces.Specification;
+using {domainRootNs}.Entities.{moduleName};
+
+namespace {namespace}
+{
+    public class {itemName}Repository : I{itemName}Repository
+    {
+        private readonly IGenericRepositoryAsync<{itemName}> _repository;
+
+        public {itemName}Repository(IGenericRepositoryAsync<{itemName}> repository)
+        {
+            _repository = repository;
+        }
+
+        public IQueryable<{itemName}> {itemName}s => _repository.Entities;
+
+        public IQueryable<{itemName}> Entities => throw new System.NotImplementedException();
+
+        public async Task<{itemName}> AddAsync({itemName} entity)
+        {
+            return await _repository.AddAsync(entity);
+        }
+
+        public async Task<{itemName}> AddOrUpdateAsync({itemName} entity)
+        {
+            return await _repository.AddOrUpdateAsync(entity);
+        }
+
+        public async Task AddOrUpdateRangeAsync(List<{itemName}> entitys)
+        {
+            await _repository.AddOrUpdateRangeAsync(entitys);
+        }
+
+        public async Task AddRangeAsync(List<{itemName}> entitys)
+        {
+            await _repository.AddRangeAsync(entitys);
+        }
+
+        public async Task DeleteAsync({itemName} entity)
+        {
+            await _repository.DeleteAsync(entity);
+        }
+
+        public async Task<IReadOnlyList<{itemName}>> GetAllAsync(bool isCached = false)
+        {
+            return await _repository.GetAllAsync();
+        }
+
+        public Task<IReadOnlyList<{itemName}>> GetPagedReponseAsync(int pageNumber, int pageSize)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public async Task UpdateAsync({itemName} entity)
+        {
+            await _repository.UpdateAsync(entity);
+        }
+
+        public async Task<{itemName}> GetByIdAsync(int id)
+        {
+            return await _repository.GetByIdAsync(id);
+        }
+
+        public Task<IEnumerable<{itemName}>> GetAllAsync(ISpecification<{itemName}> spec)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
+}

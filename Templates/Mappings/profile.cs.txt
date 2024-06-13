@@ -1,0 +1,18 @@
+﻿using AutoMapper;
+using {applicationRootNs}.Features.{moduleName};
+using {applicationRootNs}.Features.Academic.{nameofPlural}.Commands;
+using {applicationRootNs}.Features.Academic.{nameofPlural}.Queries;
+using {domainRootNs}.Entities.{moduleName};
+
+namespace {namespace}
+{
+    public class {itemName}Profile : Profile
+    {
+        public {itemName}Profile()
+        {
+            CreateMap<Create{itemName}Command, {itemName}>().ReverseMap();
+            CreateMap<Update{itemName}Command, {itemName}>().ReverseMap();
+            CreateMap<{itemName}Response, {itemName}>().ReverseMap();
+        }
+    }
+}
